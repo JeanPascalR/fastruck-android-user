@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Fastruck.iml" filepath="$PROJECT_DIR$/Fastruck.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastruck-android-user.iml" filepath="$PROJECT_DIR$/fastruck-android-user.iml" />
     </modules>
   </component>
 </project>

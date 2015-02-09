@@ -1,17 +1,37 @@
 package com.fastruck.fastruck;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
-public class Home extends ActionBarActivity implements FoodtruckListFragment.OnFtruckSelectedListener {
+public class Home extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        final ListView listview = (ListView) findViewById(R.id.listview);
+        String[] values = new String[] { "Le Camion qui fume", "La Cantine California",
+                                         "Glazed", "Le refectoire"};
+
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; ++i) {
+            list.add(values[i]);
+        }
+        //final FoodtruckAdapter adapter = new FoodtruckAdapter(this,
+        //        android.R.layout.simple_list_item_1, list);
+        final FoodtruckAdapter adapter = new FoodtruckAdapter(getApplicationContext(), values);
+        listview.setAdapter(adapter);
     }
 
 
@@ -37,8 +57,4 @@ public class Home extends ActionBarActivity implements FoodtruckListFragment.OnF
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFtruckSelected(String ftIdentifier) {
-
-    }
 }
