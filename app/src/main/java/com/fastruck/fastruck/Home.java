@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.fastruck.fastruck.model.Foodtruck;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,16 +23,15 @@ public class Home extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
         final ListView listview = (ListView) findViewById(R.id.listview);
-        String[] values = new String[] { "Le Camion qui fume", "La Cantine California",
-                                         "Glazed", "Le refectoire"};
-
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
-        }
-        //final FoodtruckAdapter adapter = new FoodtruckAdapter(this,
-        //        android.R.layout.simple_list_item_1, list);
-        final FoodtruckAdapter adapter = new FoodtruckAdapter(getApplicationContext(), values);
+        //String[] values = new String[] { "Le Camion qui fume", "La Cantine California",
+        //                                 "Glazed", "Le refectoire"};
+        Foodtruck[] foodtrucks = new Foodtruck[] {
+            new Foodtruck("Le Camion qui fume", "un excellent foodtruck", R.drawable.camionquifume),
+            new Foodtruck("La Cantine California", "un foodtruck top", R.drawable.cantinecalifornia),
+            new Foodtruck("Glazed", "un foodtruck génial", R.drawable.wideglaceglazed),
+            new Foodtruck("Le refectoire", "le meilleur foodtruck", R.drawable.lerefectoire)
+        };
+        final FoodtruckAdapter adapter = new FoodtruckAdapter(getApplicationContext(), foodtrucks);
         listview.setAdapter(adapter);
     }
 

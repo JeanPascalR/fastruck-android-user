@@ -1,6 +1,7 @@
 package com.fastruck.fastruck;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +9,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fastruck.fastruck.model.Foodtruck;
+
 /**
  * Created by jean-pascal on 08/02/2015.
  */
-public class FoodtruckAdapter extends ArrayAdapter<String> {
+public class FoodtruckAdapter extends ArrayAdapter<Foodtruck> {
 
     private final Context context;
-    private final String[] values;
+    private final Foodtruck[] foodtrucks;
 
-    public FoodtruckAdapter(Context context, String[] values) {
-        super(context, R.layout.foodtruckitem, values);
+    public FoodtruckAdapter(Context context, Foodtruck[] foodtrucks) {
+        super(context, R.layout.foodtruckitem, foodtrucks);
         this.context = context;
-        this.values = values;
+        this.foodtrucks = foodtrucks;
     }
 
     @Override
@@ -27,9 +30,11 @@ public class FoodtruckAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.foodtruckitem, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.firstLine);
+        TextView firstLine = (TextView) rowView.findViewById(R.id.firstLine);
+        TextView secondLine = (TextView) rowView.findViewById(R.id.secondLine);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        if (values[position].equals("Le Camion qui fume"))
+
+        /*if (values[position].equals("Le Camion qui fume"))
             imageView.setImageResource(R.drawable.camionquifume);
         else if(values[position].equals("La Cantine California"))
             imageView.setImageResource(R.drawable.cantinecalifornia);
@@ -37,14 +42,13 @@ public class FoodtruckAdapter extends ArrayAdapter<String> {
             imageView.setImageResource(R.drawable.wideglaceglazed);
         else if(values[position].equals("Le refectoire"))
             imageView.setImageResource(R.drawable.lerefectoire);
-        textView.setText(values[position]);
-        // change the icon for Windows and iPhone
-        /*String s = values[position];
-        if (s.startsWith("iPhone")) {
-            imageView.setImageResource(R.drawable.no);
-        } else {
-            imageView.setImageResource(R.drawable.ok);
-        }*/
+        textView.setText(values[position]);*/
+        Foodtruck ft = foodtrucks[position];
+        Log.v("adapter", "################################");
+        Log.v("adapter", ft.getName() + " ; " + position);
+        firstLine.setText(ft.getName());
+        secondLine.setText(ft.getDescription());
+        imageView.setImageResource(ft.getImageResourceId());
 
         return rowView;
     }
